@@ -53,11 +53,11 @@ public class RecipeController {
     public String updateRecipe(@PathVariable("id") long id, @Valid Recipe recipe,
                              BindingResult result) {
         if (result.hasErrors()) {
-            recipe.setId(id);
+            recipe.setRecipe_id(id);
             return "redirect:/recipes/" + id;
         }
 
-        recipe.setId(id);
+        recipe.setRecipe_id(id);
         recipeRepository.save(recipe);
         return "redirect:/recipes";
     }

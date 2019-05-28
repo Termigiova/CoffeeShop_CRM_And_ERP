@@ -34,9 +34,9 @@
                 <td th:text="${collaborator.state}"></td>
                 <td th:text="${collaborator.phone}"></td>
                 <td th:text="${collaborator.dob}"></td>
-                <td><a th:href="@{/collaborators/{id}(id=${collaborator.id})}">Edit</a></td>
+                <td><a th:href="@{/collaborators/{recipe_id}(recipe_id=${collaborator.recipe_id})}">Edit</a></td>
                 <td>
-                    <form th:action="@{/collaborators/{id}(id=${collaborator.id})}" th:method="delete">
+                    <form th:action="@{/collaborators/{recipe_id}(recipe_id=${collaborator.recipe_id})}" th:method="delete">
                         <input type="hidden" name="_method" value="delete"/>
                         <input type="submit" value="Delete"/>
                     </form>

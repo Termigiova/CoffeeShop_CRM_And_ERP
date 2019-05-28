@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class CollaboratorController {
@@ -54,11 +53,11 @@ public class CollaboratorController {
     public String updateCollaborator(@PathVariable("id") long id, @Valid Collaborator collaborator,
                              BindingResult result) {
         if (result.hasErrors()) {
-            collaborator.setId(id);
+            collaborator.setCollaboratorId(id);
             return "redirect:/collaborators/" + id;
         }
 
-        collaborator.setId(id);
+        collaborator.setCollaboratorId(id);
         collaboratorRepository.save(collaborator);
         return "redirect:/collaborators";
     }

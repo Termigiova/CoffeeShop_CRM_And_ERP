@@ -3,39 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-<div th:switch="${recipes}">
-    <h2 th:case="null">No recipes yet!</h2>
-    <div th:case="*">
-        <h2>Recipes</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="recipe : ${recipes}">
-                <td th:text="${recipe.name}"></td>
-                <td th:text="${recipe.quantity}"></td>
-                <td th:text="${recipe.price}"></td>
-                <td><a th:href="@{/recipes/{id}(id=${recipe.id})}">Edit</a></td>
-                <td>
-                    <form th:action="@{/recipes/{id}(id=${recipe.id})}" th:method="delete">
-                        <input type="hidden" name="_method" value="delete"/>
-                        <input type="submit" value="Delete"/>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <a class="navbar-brand" href="#">Carpe Diem</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Index <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/users">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/recipes">Recipes</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="/stocks">Stocks</a>
+            </li>
+        </ul>
     </div>
-    <p><a href="/recipes/add">Add a new recipe</a></p>
+</nav>
+
+<div class="container mt-2">
+    <div th:switch="${recipes}">
+        <h2 th:case="null">No recipes yet!</h2>
+        <div th:case="*">
+            <h2>Recipes</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="recipe : ${recipes}">
+                    <td th:text="${recipe.name}"></td>
+                    <td th:text="${recipe.quantity}"></td>
+                    <td th:text="${recipe.price}"></td>
+                    <td th:text="${recipe.description}"></td>
+                    <td><a th:href="@{/recipes/{recipe_id}(recipe_id=${recipe.recipe_id})}">Edit</a></td>
+                    <td>
+                        <form th:action="@{/recipes/{recipe_id}(recipe_id=${recipe.recipe_id})}" th:method="delete">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <input type="submit" value="Delete"/>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a class="btn btn-primary" href="/recipes/add">Add new recipe</a></p>
+    </div>
 </div>
+
 </body>
 </html>
+

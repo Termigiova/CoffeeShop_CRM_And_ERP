@@ -18,7 +18,7 @@ public class Collaborator implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long collaborator_id;
 
     @NotBlank(message = "First name is mandatory")
     private String firstName;
@@ -54,12 +54,12 @@ public class Collaborator implements Serializable {
     @LastModifiedDate
     private Date updatedAt;
 
-    public long getId() {
-        return id;
+    public long getCollaboratorId() {
+        return collaborator_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setCollaboratorId(long collaborator_id) {
+        this.collaborator_id = collaborator_id;
     }
 
     public String getFirstName() {

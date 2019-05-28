@@ -18,7 +18,7 @@ public class Asset implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long asset_id;
 
     @NotBlank(message = "Name is mandatory")
     private String name;
@@ -42,12 +42,12 @@ public class Asset implements Serializable {
     @LastModifiedDate
     private Date updatedAt;
 
-    public long getId() {
-        return id;
+    public long getAssetId() {
+        return asset_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setAssetId(long asset_id) {
+        this.asset_id = asset_id;
     }
 
     public String getName() {

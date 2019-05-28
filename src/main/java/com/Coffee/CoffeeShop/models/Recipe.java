@@ -19,7 +19,7 @@ public class Recipe implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long recipe_id;
 
     @NotBlank(message = "Name is mandatory")
     private String name;
@@ -29,6 +29,9 @@ public class Recipe implements Serializable {
 
     @NotNull(message = "Price is mandatory")
     private Double price;
+
+    @NotNull(message = "Description is mandatory")
+    private String description;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -40,12 +43,12 @@ public class Recipe implements Serializable {
     @LastModifiedDate
     private Date updatedAt;
 
-    public long getId() {
-        return id;
+    public long getRecipe_id() {
+        return recipe_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setRecipe_id(long recipe_id) {
+        this.recipe_id = recipe_id;
     }
 
     public String getName() {
@@ -70,5 +73,13 @@ public class Recipe implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -3,28 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <title>Add recipe</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-<form th:action="@{/recipes}" th:object="${recipe}" th:method="post">
-    <label for="name">Name</label>
-    <input type="text" th:field="*{name}" id="name" name="name" placeholder="Name">
-    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <a class="navbar-brand" href="#">Carpe Diem</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     
-    <br>
-    
-    <label for="quantity">Quantity</label>
-    <input type="text" th:field="*{quantity}" id="quantity" name="quantity" placeholder="Quantity">
-    <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>
-    
-    <br>
-    
-    <label for="price">Price</label>
-    <input type="text" th:field="*{price}" id="price" name="price" placeholder="Price">
-    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
-    
-    <br>
-    
-    <input type="submit" value="Add Recipe">
-</form>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Index <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/users">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/recipes">Recipes</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="/stocks">Stocks</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row justify-content-md-center mt-2">
+        <div class="col-6">
+            <form th:action="@{/recipes}" th:object="${recipe}" th:method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" th:field="*{name}" recipe_id="name" name="name" placeholder="Name" id="name" class="form-control">
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                </div>
+        
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="text" th:field="*{quantity}" recipe_id="quantity" name="quantity" placeholder="Quantity" id="quantity" class="form-control">
+                    <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>
+                </div>
+        
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="text" th:field="*{price}" recipe_id="price" name="price" placeholder="Price" id="price" class="form-control">
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                </div>
+        
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" th:field="*{description}" recipe_id="description" name="description" placeholder="Description" id="description" class="form-control">
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+                </div>
+        
+                <input class="btn btn-primary" type="submit" value="Add Recipe">
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

@@ -13,36 +13,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "roles")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
-public class User implements Serializable {
+public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long user_id;
+    private long role_id;
 
-    @ManyToMany
-    @JoinTable(
-            name = "Users_Roles",
-            joinColumns = {@JoinColumn(name = "role_id")},
-            inverseJoinColumns = {@JoinColumn(name = "user_id")}
-    )
-    private Set<Role> userRoles;
-
-    public Set<Role> getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(Set<Role> userRoles) {
-        this.userRoles = userRoles;
-    }
+    @ManyToMany(mappedBy = "userRoles")
+    Set<User> userRoles;
 
     @NotBlank(message = "Name is mandatory")
     private String name;
-
-    @NotBlank(message = "Email is mandatory")
-    private String email;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -54,12 +38,20 @@ public class User implements Serializable {
     @LastModifiedDate
     private Date updatedAt;
 
-    public long getUser_id() {
-        return user_id;
+    public long getRole_id() {
+        return role_id;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public void setRole_id(long role_id) {
+        this.role_id = role_id;
+    }
+
+    public Set<User> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<User> users) {
+        this.userRoles = userRoles;
     }
 
     public String getName() {
@@ -68,13 +60,5 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }

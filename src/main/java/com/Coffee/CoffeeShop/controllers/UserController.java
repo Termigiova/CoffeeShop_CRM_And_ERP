@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.Coffee.CoffeeShop.repositories.UserRepository;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 
@@ -51,11 +50,11 @@ public class UserController {
     public String updateUser(@PathVariable("id") long id, @Valid User user,
                              BindingResult result) {
         if (result.hasErrors()) {
-            user.setId(id);
+            user.setUser_id(id);
             return "redirect:/users/" + id;
         }
 
-        user.setId(id);
+        user.setUser_id(id);
         userRepository.save(user);
         return "redirect:/users";
     }
